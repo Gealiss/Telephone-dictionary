@@ -1,0 +1,25 @@
+<h2>Lab 20</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm-8">
+      <div class="list-group" id="List" style="max-height: 400px; overflow-y: scroll;">
+        {{> list-buttons _list=list}}
+      </div>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm-8">
+      <button type="button" id="AddButton" class="btn btn-outline-primary">Add contact</button>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>
+
+{{> modal-add}}
+{{> modal-update}}
+
+<script src="/content/js/form.js"></script>
