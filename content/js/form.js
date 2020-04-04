@@ -1,14 +1,16 @@
 $(document).ready(function() {
 
-    $("div.list-group").find("button").click(function(){
+    $("#List").on("click", "button", function(){
         $("#List").find(".updating").removeClass("updating");
         $(this).addClass("updating");
+        
         let _name = $(this).find(".button-name").text();
         let _number = $(this).find(".button-number").text();
         $("#UpdateName").val(_name);
         $("#UpdateNumber").val(_number);
         $("#UpdateModal").modal();
-    });
+    }); 
+
     $("#AddButton").click(() => {
         $("#AddModal").modal();
     });
