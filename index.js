@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 var exphbs  = require('express-handlebars');
-const homeRouter = require("./routes/homeRouter.js");
+const homeRouter = require("./routes/HomeRouter");
 const port = process.env.PORT || 3000;
 
 app.engine('handlebars', exphbs());
