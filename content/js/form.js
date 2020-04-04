@@ -46,4 +46,17 @@ $(document).ready(function() {
             $("#List").find(".updating").removeClass("updating");
         });
     });
+    //DELETE
+    $("#FormDeleteButton").click(() =>{
+        let _Name = $("#UpdateName").val();
+
+        $.ajax({
+            method: "POST",
+            url: "/delete",
+            contentType: "application/json",
+            data: JSON.stringify({"name": _Name})
+        }).done(() => {
+            $("#List").find(".updating").remove();
+        });
+    });
 });

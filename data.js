@@ -52,6 +52,29 @@ function update(_obj, cb){
     }); 
 }
 
+function del(_obj, cb){
+    jsonfile.readFile(file, function (err, obj) {
+        if (err){
+            console.error(err);
+            cb(false);
+            return;
+        }
+        for(let i = 0; i < obj.contacts.length; i++){
+            if(obj.contacts[i].name == _obj.name){
+                obj.contacts.splice(i, 1);
+            }
+        }
+        jsonfile.writeFile(file, obj, function (err) {
+            if (err){
+                console.error(err);
+                cb(false);
+            }
+            cb(true);
+        });
+    }); 
+}
+
 module.exports.load = load;
 module.exports.add = add;
 module.exports.update = update;
+module.exports.del = del;

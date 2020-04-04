@@ -36,3 +36,14 @@ exports.update = function (req, res) {
         });
     });
 };
+
+exports.del = function (req, res) {
+    let obj = req.body;
+    data.del(obj, (err) => {
+        if(!err){
+            return;
+        }
+        res.status(200);
+        res.send("Deleted obj name: " + obj.name);
+    });
+};
