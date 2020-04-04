@@ -11,12 +11,12 @@
         <label for="UpdateName">Name</label>
         <input type="text" id="UpdateName" class="form-control" readonly>
         <label for="UpdateNumber">Number</label>
-        <input type="text" pattern="\d*" maxlength="8" id="UpdateNumber" class="form-control">
+        <input type="text" pattern="\d*" maxlength="8" id="UpdateNumber" class="form-control" data-content="8 digits required.">
       </div>
       <div class="modal-footer">
         <button type="button" id="FormDeleteButton" class="btn btn-danger" data-dismiss="modal">Delete</button>
         <button type="button" id="FormUpdateCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="FormUpdateButton" class="btn btn-primary" data-dismiss="modal">Update</button>
+        <button type="button" id="FormUpdateButton" class="btn btn-primary">Update</button>
       </div>
     </div>
   </div>

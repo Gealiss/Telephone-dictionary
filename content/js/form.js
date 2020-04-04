@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    //ONCLICK LIST
     $("#List").on("click", "button", function(){
         $("#List").find(".updating").removeClass("updating");
         $(this).addClass("updating");
@@ -15,10 +15,44 @@ $(document).ready(function() {
         $("#AddModal").modal();
     });
 
+    //VALIDATION FOR INPUT FIELDS
+    $(this).on("input", "#AddNumber", function(){
+        let t_input = parseInt($(this).val());
+        if(isNaN(t_input)){
+            $(this).val("");
+        } else {
+            $(this).val(t_input);
+        }
+    });
+    $(this).on("input", "#UpdateNumber", function(){
+        let t_input = parseInt($(this).val());
+        if(isNaN(t_input)){
+            $(this).val("");
+        } else {
+            $(this).val(t_input);
+        }
+    });    
+
     //ADD
     $("#FormAddButton").click(() => {
         let _Name = $("#AddName").val();
         let _Number = $("#AddNumber").val();
+
+        if(_Name.length < 3 || _Name.length > 20){
+            $('#AddName').popover('enable');
+            $('#AddName').popover('show');
+            return;
+        }
+        $('#AddName').popover('hide');
+        $('#AddName').popover('disable');
+
+        if(_Number.length < 8 || _Number.length > 8){
+            $('#AddNumber').popover('enable');
+            $('#AddNumber').popover('show');
+            return;
+        }        
+        $('#AddNumber').popover('hide');
+        $('#AddNumber').popover('disable');
 
         $.ajax({
             method: "POST",
@@ -27,6 +61,7 @@ $(document).ready(function() {
             data: JSON.stringify({"name": _Name, "number": _Number })
         }).done(function(html){
               $("#List").append(html);
+              $("#AddModal").modal("hide");
         });
     });
     //UPDATE
@@ -34,6 +69,14 @@ $(document).ready(function() {
         let _Name = $("#UpdateName").val();
         let _Number = $("#UpdateNumber").val();
         
+        if(_Number.length < 8 || _Number.length > 8){
+            $('#UpdateNumber').popover('enable');
+            $('#UpdateNumber').popover('show');
+            return;
+        }        
+        $('#UpdateNumber').popover('hide');
+        $('#UpdateNumber').popover('disable');
+
         $.ajax({
             method: "POST",
             url: "/update",
@@ -46,6 +89,7 @@ $(document).ready(function() {
             $(elem).find(".button-name").text(n);
             $(elem).find(".button-number").text(num);
             $("#List").find(".updating").removeClass("updating");
+            $("#UpdateModal").modal("hide");
         });
     });
     //DELETE

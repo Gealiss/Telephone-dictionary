@@ -9,13 +9,13 @@
       </div>
       <div class="modal-body">
         <label for="AddName">Name</label>
-        <input type="text" maxlength="20" id="AddName" class="form-control">
+        <input type="text" maxlength="20" id="AddName" class="form-control" data-content="3-20 characters required." required >
         <label for="AddNumber">Number</label>
-        <input type="text" pattern="\d*" maxlength="8" id="AddNumber" class="form-control">
+        <input type="text" pattern="\d*" maxlength="8" id="AddNumber" class="form-control" data-content="8 digits required." required>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="FormAddButton" class="btn btn-primary" data-dismiss="modal">Add</button>
+        <button type="button" id="FormAddButton" class="btn btn-primary">Add</button>
       </div>
     </div>
   </div>
