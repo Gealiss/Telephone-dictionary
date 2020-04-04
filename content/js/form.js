@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $("div.list-group").find("button").click(function(){
+        $("#List").find(".updating").removeClass("updating");
         $(this).addClass("updating");
         let _name = $(this).find(".button-name").text();
         let _number = $(this).find(".button-number").text();
@@ -8,12 +9,11 @@ $(document).ready(function() {
         $("#UpdateNumber").val(_number);
         $("#UpdateModal").modal();
     });
-    $("#FormUpdateCloseButton").click(() => {
-        $("#List").find(".updating").removeClass("updating");
-    });
     $("#AddButton").click(() => {
         $("#AddModal").modal();
     });
+
+    //ADD
     $("#FormAddButton").click(() => {
         let _Name = $("#AddName").val();
         let _Number = $("#AddNumber").val();
@@ -27,18 +27,23 @@ $(document).ready(function() {
               $("#List").append(html);
         });
     });
+    //UPDATE
     $("#FormUpdateButton").click(() => {
         let _Name = $("#UpdateName").val();
         let _Number = $("#UpdateNumber").val();
-
+        
         $.ajax({
             method: "POST",
             url: "/update",
             contentType: "application/json",
             data: JSON.stringify({"name": _Name, "number": _Number })
         }).done(function(html){
-            $("#List").find(".updating");
-            $("#List").append(html);
+            let n = $(html).find(".button-name").text();
+            let num = $(html).find(".button-number").text();
+            let elem = $("#List").find(".updating");
+            $(elem).find(".button-name").text(n);
+            $(elem).find(".button-number").text(num);
+            $("#List").find(".updating").removeClass("updating");
         });
     });
 });
