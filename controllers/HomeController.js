@@ -7,7 +7,23 @@ exports.index = function (req, res) {
     data.load((obj) => {
         d = obj.contacts;
         res.render('home', {
-            list: d
+            list: d,
+            helpers: {
+                getTime: function(){
+                    var myDate = new Date();
+                    var hour = myDate.getHours();
+                    var minute = myDate.getMinutes();
+                    var second = myDate.getSeconds();
+                    if (minute < 10) {
+                        minute = "0" + minute;
+                    }
+                    if (second < 10) {
+                        second = "0" + second;
+                    }
+                    return "Current time: " + hour + ":" + minute + ":" + second;
+                },
+                bar: function () { return 'BAR!'; }
+            }
         });
     });    
 };
